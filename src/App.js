@@ -13,14 +13,14 @@ import Contact from './components/Contact'
 
 function App() {
   return (
-      <BrowserRouter>
-        <div className='App'>
-          <Navbar />
-            <Route exact path="/" component={Home} />
-            <Route path="/contact" component={Contact}/>
-            <Route path="/about" component={About} />
-        </div>
-      </BrowserRouter>
+    <BrowserRouter>
+      <div className='App'>
+        <Navbar />
+          <Route exact path="/" component={Home} />
+          <Route path="/contact" component={Contact}/>
+          <Route path="/about" component={About} />
+      </div>
+    </BrowserRouter>
   );
 }
 
