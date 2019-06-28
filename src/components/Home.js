@@ -29,7 +29,7 @@ class Home extends Component {
           <h1 className='card-title blue-text'>{post.title}</h1>
           <p>
             { post.body.substr(0, 80) }...
-            </p>
+          </p>
         </div>
       </div>
     )
