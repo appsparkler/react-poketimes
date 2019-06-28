@@ -1,13 +1,44 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 
 class Home extends Component {
+  state = {
+    posts: []
+  }
+
+  componentDidMount() {
+    axios
+      .get('https://jsonplaceholder.typicode.com/posts')
+      .then(res => {
+        // alert(JSON.stringify())
+        const randomNumber = Math.floor(Math.random() * 80);
+        // alert(res.data.length);
+        this.setState({
+          posts: res.data.splice(randomNumber, 10)
+        })
+      });
+  }
   render() {
+    const { posts } = this.state;
+    const noPostsJSX = (
+      <div>No Posts Yet...</div>
+    )
+    const map_postsList = post => (
+      <div className="post card" key={post.id}>
+        <div className='card-content'>
+          <h1 className='card-title blue-text'>{post.title}</h1>
+          <p>
+            { post.body.substr(0, 80) }...
+            </p>
+        </div>
+      </div>
+    )
+    const postsList = posts && posts.length ?
+      posts.map(map_postsList) : noPostsJSX
     return (
       <div className="container">
-        <h4 className="center">Home</h4>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo sit accusamus ducimus quod possimus, quas necessitatibus laborum? Inventore error hic cupiditate saepe quasi quidem facilis, temporibus vero harum, repellat ab, nostrum corporis voluptatibus magni dignissimos delectus tempora? Animi consequatur modi rerum aperiam ea magni, quos, soluta suscipit voluptatum officiis at explicabo consectetur dolor aliquid quidem mollitia. Enim quia nemo aperiam quidem incidunt consequuntur. Consequuntur ut amet tenetur iure modi itaque nostrum, nam alias voluptates officiis atque aliquam velit vero repellendus molestias odit ducimus quia. Velit earum ab, magnam tempora perferendis mollitia sapiente sint, aliquid consequuntur eum unde dicta, repellendus voluptas!
-        </p>
+        <h4 className="center red-text">Home</h4>
+        { postsList }
       </div>
     )
   }
