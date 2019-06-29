@@ -26,7 +26,7 @@ class Home extends Component {
     const map_postsList = post => (
       <div className="post card" key={post.id}>
         <div className='card-content'>
-          <h1 className='card-title blue-text'>{post.title}</h1>
+          <h1 className='card-title red-text'>{post.title}</h1>
           <p>
             { post.body.substr(0, 80) }...
           </p>
